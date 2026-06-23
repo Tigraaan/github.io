@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асфальтирование Магнитогорск — 25 лет опыта</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        /* бегущая строка */
+        .ticker {
+            background: #f5b800;
+            color: #0f0f0f;
+            font-weight: 800;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+        }
+        .ticker span {
+            display: inline-block;
+            animation: ticker-scroll 25s linear infinite;
+        }
+        @keyframes ticker-scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Шапка */
+        .header {
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 16px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #f5b800;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: 0.3s;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        .logo i { color: #f5b800; margin-right: 10px; }
+        .logo span { color: #f5b800; }
+        .nav { display: flex; gap: 24px; font-weight: 600; }
+        .nav a { color: #ccc; text-decoration: none; font-size: 0.95rem; transition: 0.3s; position: relative; }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f5b800;
+            transition: 0.3s;
+        }
+        .nav a:hover { color: #fff; }
+        .nav a:hover::after { width: 100%; }
+        .header-phone {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f5b800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-phone i { font-size: 1.2rem; }
+        .whatsapp-icon {
+            color: #25D366;
+            font-size: 1.8rem;
+            margin-left: 12px;
+            transition: 0.3s;
+        }
+        .whatsapp-icon:hover { transform: scale(1.15); }
+
+        /* Hero с анимированным фоном */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            overflow: hidden;
+            background: #0f0f0f;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 30% 40%, #2a2a2a, #0a0a0a);
+            z-index: 0;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255, 184, 0, 0.03) 80px, rgba(255, 184, 0, 0.03) 82px);
+            animation: roadLines 8s linear infinite;
+        }
+        @keyframes roadLines {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(82px); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #f5b800 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.6rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        .hero .sub {
+            font-size: 1.15rem;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            color: #aaa;
+        }
+        .hero .sub i { color: #f5b800; margin: 0 6px; }
+        .btn {
+            display: inline-block;
+            background: #f5b800;
+            color: #0f0f0f;
+            font-weight: 700;
+            padding: 18px 54px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(245, 184, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn i { margin-right: 12px; }
+        .btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 14px 40px rgba(245, 184, 0, 0.5);
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.5s;
+            transform: scale(0);
+        }
+        .btn:hover::after { opacity: 1; transform: scale(1); }
+
+        /* секции */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #f5b800;
+            border-radius: 4px;
+        }
+        .section-sub {
+            font-size: 1.15rem;
+            color: #aaa;
+            margin-bottom: 50px;
+            max-width: 700px;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+
+        /* Преимущества — карточки с иконками */
+        .advantage-item {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(4px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+            transition: 0.4s;
+            cursor: default;
+        }
+        .advantage-item:hover {
+            transform: translateY(-8px);
+            border-color: #f5b800;
+            background: rgba(245, 184, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .advantage-item i {
+            font-size: 3rem;
+            color: #f5b800;
+            margin-bottom: 18px;
+            display: inline-block;
+            transition: 0.4s;
+        }
+        .advantage-item:hover i { transform: scale(1.1) rotate(-5deg); }
+        .advantage-item h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .advantage-item p { color: #aaa; font-size: 0.95rem; }
+
+        /* Счётчики (цифры) */
+        .counters {
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            border-top: 2px solid #f5b800;
+            border-bottom: 2px solid #f5b800;
+            padding: 60px 20px;
+            margin: 0;
+        }
+        .counters .grid-4 { max-width: 1200px; margin: 0 auto; }
+        .counter-item {
+            text-align: center;
+        }
+        .counter-item .num {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #f5b800;
+            line-height: 1;
+        }
+        .counter-item .label {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-top: 8px;
+        }
+        .counter-item i {
+            font-size: 2.5rem;
+            color: #f5b800;
+            opacity: 0.3;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Услуги */
+        .services-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .service-main {
+            background: rgba(255,255,255,0.04);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(4px);
+        }
+        .service-main h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .service-main h3 i { color: #f5b800; margin-right: 12px; }
+        .service-main ul { list-style: none; }
+        .service-main li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #ddd;
+        }
+        .service-main li i { color: #f5b800; width: 24px; text-align: center; }
+        .service-secondary {
+            background: rgba(255,255,255,0.03);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .service-secondary h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .service-secondary h3 i { color: #aaa; margin-right: 10px; }
+        .service-secondary ul { list-style: none; }
+        .service-secondary li {
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+        .service-secondary li i { color: #666; width: 20px; font-size: 0.85rem; }
+
+        /* Галерея с каруселью (сделаем сетку с эффектом) */
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: #f5b800;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            transition: 0.6s;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item .caption {
+            padding: 18px;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform: translateY(100%);
+            transition: 0.4s;
+        }
+        .gallery-item:hover .caption { transform: translateY(0); }
+
+        /* Техника */
+        .tech-item {
+            background: rgba(255,255,255,0.04);
+            padding: 28px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.4s;
+        }
+        .tech-item:hover {
+            border-color: #f5b800;
+            transform: translateY(-5px);
+            background: rgba(245, 184, 0, 0.06);
+        }
+        .tech-item i {
+            font-size: 3rem;
+            color: #f5b800;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .tech-item h4 { color: #fff; font-size: 1.1rem; }
+
+        /* Отзывы (заглушки) */
+        .review-item {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 4px solid #f5b800;
+            font-style: italic;
+            color: #ccc;
+        }
+        .review-item .author {
+            font-style: normal;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 12px;
+            display: block;
+        }
+        .review-item .author i { color: #f5b800; margin-right: 6px; }
+
+        /* Контакты */
+        .contacts {
+            background: #0a0a0a;
+            padding: 80px 20px;
+            border-top: 2px solid #f5b800;
+            border-bottom: 2px solid #f5b800;
+        }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .contacts-info p {
+            font-size: 1.15rem;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #ddd;
+        }
+        .contacts-info i {
+            color: #f5b800;
+            width: 30px;
+            font-size: 1.4rem;
+        }
+        .contacts-info a {
+            color: #f5b800;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contacts-info a:hover { text-decoration: underline; }
+        .form-group { margin-bottom: 22px; }
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 1px solid #333;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #f5b800;
+            box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.2);
+        }
+        .form-group input::placeholder { color: #666; }
+        .contacts .btn { width: 100%; text-align: center; }
+
+        /* подвал */
+        .footer {
+            background: #070707;
+            color: #666;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        .footer span { color: #f5b800; }
+
+        /* sticky мобильные кнопки */
+        .sticky-mobile {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15,15,15,0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 16px;
+            z-index: 999;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #f5b800;
+        }
+        .sticky-mobile a {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 10px 0;
+            border-radius: 50px;
+        }
+        .sticky-mobile .call-btn {
+            background: #f5b800;
+            color: #0f0f0f;
+            margin-right: 8px;
+        }
+        .sticky-mobile .whatsapp-btn {
+            background: #25D366;
+            margin-left: 8px;
+        }
+
+        /* анимация появления */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* модалка */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #1a1a1a;
+            max-width: 420px;
+            width: 90%;
+            padding: 35px;
+            border-radius: 28px;
+            text-align: center;
+            border: 1px solid #f5b800;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #888;
+            transition: 0.3s;
+        }
+        .modal-close:hover { color: #fff; }
+        .modal-content h2 { color: #fff; margin-bottom: 12px; }
+        .modal-content h2 i { color: #f5b800; }
+        .modal-content p { color: #aaa; margin-bottom: 25px; }
+        .modal-content .btn { display: block; margin-bottom: 14px; width: 100%; }
+        .modal-content .btn-wa { background: #25D366; color: #fff; box-shadow: 0 8px 20px rgba(37,211,102,0.3); }
+
+        /* адаптив */
+        @media (max-width: 992px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+            .services-wrapper { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .header { flex-wrap: wrap; gap: 12px; justify-content: center; }
+            .nav { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .contacts-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.2rem; }
+            .section { padding: 50px 15px; }
+            .section-title { font-size: 2rem; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+            .counter-item .num { font-size: 2.8rem; }
+            .sticky-mobile { display: flex; }
+            .header-phone { display: none; }
+            .header .whatsapp-icon { display: none; }
+            .gallery-item .caption { transform: translateY(0); position: relative; background: #111; }
+            .gallery-item:hover .caption { transform: translateY(0); }
+        }
+        @media (min-width: 577px) {
+            .sticky-mobile { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Бегущая строка -->
+<div class="ticker"><span>🚧 Работаем без выходных &nbsp;•&nbsp; Бесплатный выезд замерщика &nbsp;•&nbsp; Собственная техника &nbsp;•&nbsp; 25 лет на рынке &nbsp;•&nbsp; Гарантия качества</span></div>
+
+<!-- Шапка -->
+<header class="header">
+    <div class="logo"><i class="fas fa-road"></i>Асфальт<span>Про</span></div>
+    <nav class="nav">
+        <a href="#advantages">Преимущества</a>
+        <a href="#services">Услуги</a>
+        <a href="#gallery">Работы</a>
+        <a href="#tech">Техника</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+    <div>
+        <a href="tel:+79001234567" class="header-phone"><i class="fas fa-phone-alt"></i> +7 (900) 123-45-67</a>
+        <a href="https://wa.me/79001234567" target="_blank" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <h1>Асфальтирование <br>в Магнитогорске</h1>
+        <p>и по всей Челябинской области</p>
+        <div class="sub"><i class="fas fa-check-circle"></i> 25 лет опыта <i class="fas fa-circle" style="font-size: 0.4rem; vertical-align: middle;"></i> Свои бригады и техника <i class="fas fa-circle" style="font-size: 0.4rem; vertical-align: middle;"></i> Гарантия</div>
+        <button class="btn" id="openModalBtn"><i class="fas fa-calculator"></i> Рассчитать стоимость</button>
+    </div>
+</section>
+
+<!-- Счётчики -->
+<div class="counters">
+    <div class="grid-4">
+        <div class="counter-item fade-in"><i class="fas fa-calendar-alt"></i><div class="num" data-count="25">0</div><div class="label">Лет опыта</div></div>
+        <div class="counter-item fade-in"><i class="fas fa-building"></i><div class="num" data-count="520">0</div><div class="label">Выполненных объектов</div></div>
+        <div class="counter-item fade-in"><i class="fas fa-users"></i><div class="num" data-count="12">0</div><div class="label">Постоянных сотрудников</div></div>
+        <div class="counter-item fade-in"><i class="fas fa-truck"></i><div class="num" data-count="8">0</div><div class="label">Единиц техники</div></div>
+    </div>
+</div>
+
+<!-- Преимущества -->
+<section id="advantages" class="section">
+    <h2 class="section-title">Почему выбирают нас</h2>
+    <p class="section-sub">Нам доверяют, потому что мы контролируем каждый этап — от закупки материалов до сдачи объекта</p>
+    <div class="grid-4">
+        <div class="advantage-item fade-in"><i class="fas fa-award"></i><h3>25 лет опыта</h3><p>Тысячи объектов, сотни довольных клиентов</p></div>
+        <div class="advantage-item fade-in"><i class="fas fa-tools"></i><h3>Своя техника</h3><p>Асфальтоукладчики, катки, экскаваторы</p></div>
+        <div class="advantage-item fade-in"><i class="fas fa-hard-hat"></i><h3>Штатные бригады</h3><p>Только свои сотрудники, без субподряда</p></div>
+        <div class="advantage-item fade-in"><i class="fas fa-map-marked-alt"></i><h3>Выезд в область</h3><p>Работаем в Магнитогорске и районе</p></div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="section">
+    <h2 class="section-title">Наши услуги</h2>
+    <p class="section-sub">Основная специализация — асфальтирование. Также выполняем полный спектр строительных работ.</p>
+    <div class="services-wrapper">
+        <div class="service-main fade-in">
+            <h3><i class="fas fa-road"></i> Асфальтирование под ключ</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Парковки, площадки, подъездные пути</li>
+                <li><i class="fas fa-check-circle"></i> Дорожное покрытие, тротуары</li>
+                <li><i class="fas fa-check-circle"></i> Ямочный ремонт, фрезерование</li>
+                <li><i class="fas fa-check-circle"></i> Устройство основания и бордюров</li>
+                <li><i class="fas fa-check-circle"></i> Водоотведение и дренаж</li>
+                <li><i class="fas fa-check-circle"></i> Бесплатный выезд замерщика</li>
+            </ul>
+        </div>
+        <div class="service-secondary fade-in">
+            <h3><i class="fas fa-tools"></i> Дополнительные работы</h3>
+            <ul>
+                <li><i class="fas fa-chevron-right"></i> Ремонт и отделка квартир</li>
+                <li><i class="fas fa-chevron-right"></i> Строительство домов</li>
+                <li><i class="fas fa-chevron-right"></i> Стяжка, штукатурка</li>
+                <li><i class="fas fa-chevron-right"></i> Фасадные работы</li>
+                <li><i class="fas fa-chevron-right"></i> Кровля, перепланировка</li>
+                <li><i class="fas fa-chevron-right"></i> Любые строительные услуги</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Галерея -->
+<section id="gallery" class="section">
+    <h2 class="section-title">Наши работы</h2>
+    <p class="section-sub">Реальные объекты за последние 2 года</p>
+    <div class="grid-4">
+        <div class="gallery-item fade-in">
+            <img src="https://picsum.photos/seed/asphalt1/600/400" alt="Асфальтирование парковки">
+            <div class="caption">Асфальтирование парковки ТЦ</div>
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://picsum.photos/seed/asphalt2/600/400" alt="Ямочный ремонт">
+            <div class="caption">Ямочный ремонт дороги</div>
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://picsum.photos/seed/asphalt3/600/400" alt="Тротуар">
+            <div class="caption">Тротуар с бордюром</div>
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://picsum.photos/seed/asphalt4/600/400" alt="Отделка дома">
+            <div class="caption">Отделка коттеджа (доп.)</div>
+        </div>
+    </div>
+</section>
+
+<!-- Техника -->
+<section id="tech" class="section">
+    <h2 class="section-title">Наша техника и бригады</h2>
+    <p class="section-sub">Всё своё — работаем без посредников</p>
+    <div class="grid-3">
+        <div class="tech-item fade-in"><i class="fas fa-tractor"></i><h4>Асфальтоукладчики (2 ед.)</h4></div>
+        <div class="tech-item fade-in"><i class="fas fa-drum"></i><h4>Дорожные катки (3 ед.)</h4></div>
+        <div class="tech-item fade-in"><i class="fas fa-truck"></i><h4>Самосвалы и экскаваторы</h4></div>
+        <div class="tech-item fade-in"><i class="fas fa-hard-hat"></i><h4>Бригада из 12 человек</h4></div>
+        <div class="tech-item fade-in"><i class="fas fa-ruler-combined"></i><h4>Свой геодезист и мастер</h4></div>
+        <div class="tech-item fade-in"><i class="fas fa-clock"></i><h4>Работаем без выходных</h4></div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section id="reviews" class="section">
+    <h2 class="section-title">Отзывы клиентов</h2>
+    <p class="section-sub">Реальные отзывы с наших объектов</p>
+    <div class="grid-3">
+        <div class="review-item fade-in">
+            «Заказали асфальтирование парковки у ТЦ. Сделали быстро, качественно, даже раньше срока. Рекомендую!»
+            <span class="author"><i class="fas fa-user-circle"></i> Иван Петров, директор ТЦ «Магнит»</span>
+        </div>
+        <div class="review-item fade-in">
+            «Делали ямочный ремонт на заводской территории. Работают аккуратно, технику свою пригнали. Цена приятно удивила.»
+            <span class="author"><i class="fas fa-user-circle"></i> Сергей Николаев, гл. инженер ЗМК</span>
+        </div>
+        <div class="review-item fade-in">
+            «Обращался по поводу дороги к дому в области. Приехали, сделали замер, уложили асфальт за 2 дня. Доволен как слон!»
+            <span class="author"><i class="fas fa-user-circle"></i> Андрей Смирнов, частный заказчик</span>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты и форма -->
+<section id="contacts" class="contacts">
+    <div class="contacts-grid">
+        <div class="contacts-info">
+            <h2 class="section-title" style="color:#fff;">Свяжитесь с нами</h2>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/79001234567" target="_blank">Написать в WhatsApp</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> г. Магнитогорск, ул. Строительная, 15</p>
+            <p><i class="fas fa-clock"></i> Пн–Вс: 8:00 – 20:00</p>
+            <p><i class="fas fa-truck"></i> Выезжаем в любой район и область</p>
+            <p style="margin-top:20px; font-size:0.95rem; opacity:0.7;">Бесплатный выезд замерщика в день обращения</p>
+        </div>
+        <div>
+            <form id="callbackForm">
+                <h3 style="color:#fff; margin-bottom:22px;">Оставьте заявку</h3>
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Телефон" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="comment" placeholder="Комментарий (необязательно)">
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer class="footer">
+    &copy; 2026 <span>АсфальтПро</span> — все права защищены. Магнитогорск.
+</footer>
+
+<!-- Sticky кнопки для мобильных -->
+<div class="sticky-mobile">
+    <a href="tel:+79001234567" class="call-btn"><i class="fas fa-phone-alt"></i> Позвонить</a>
+    <a href="https://wa.me/79001234567" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
+
+<!-- Модалка -->
+<div class="modal" id="costModal">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2><i class="fas fa-calculator"></i> Расчёт стоимости</h2>
+        <p>Позвоните нам или оставьте заявку — мы пришлём смету в течение 30 минут</p>
+        <a href="tel:+79001234567" class="btn"><i class="fas fa-phone-alt"></i> Позвонить</a>
+        <a href="https://wa.me/79001234567" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> Написать в WhatsApp</a>
+    </div>
+</div>
+
+<script>
+    // Плавный скролл по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Fade-in анимация при скролле
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Анимация счётчиков (цифры)
+    const counters = document.querySelectorAll('.counter-item .num');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-count'));
+                if (!el.classList.contains('animated')) {
+                    el.classList.add('animated');
+                    let current = 0;
+                    const step = Math.ceil(target / 60);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            el.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            el.textContent = current;
+                        }
+                    }, 25);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Модалка
+    const modal = document.getElementById('costModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('modalClose');
+    openBtn.addEventListener('click', () => modal.classList.add('active'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+    // Форма обратной связи
+    document.getElementById('callbackForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        if (!name || !phone) {
+            alert('Пожалуйста, заполните имя и телефон.');
+            return;
+        }
+        alert('Спасибо, ' + name + '! Мы перезвоним вам в течение 30 минут.');
+        this.reset();
+    });
+
+    // Замени номер телефона (+79001234567) на реальный во всех ссылках
+</script>
+</body>
+</html>
